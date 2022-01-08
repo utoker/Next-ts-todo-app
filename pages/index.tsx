@@ -1,8 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Todos from "./components/Todos";
+import Todos from "../components/Todos";
+import Todo from "../models/todo";
 
 const Home: NextPage = () => {
+  const todos = [new Todo("start tutorial channel")];
+
   return (
     <>
       <Head>
@@ -10,7 +13,7 @@ const Home: NextPage = () => {
         <meta name="Todo App" content="Created with Next.js & typescript" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Todos />
+      <Todos items={todos} />
     </>
   );
 };
