@@ -1,10 +1,19 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
+import NewTodo from "../components/NewTodo";
 import Todos from "../components/Todos";
 import Todo from "../models/todo";
 
 const Home: NextPage = () => {
-  const todos = [new Todo("start tutorial channel")];
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const addTodoHandler = (todoText: string) => {
+    const newTodo = new Todo(todoText);
+    setTodos((prev) => {
+      return prev.concat(newTodo);
+    });
+  };
 
   return (
     <>
@@ -13,6 +22,7 @@ const Home: NextPage = () => {
         <meta name="Todo App" content="Created with Next.js & typescript" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NewTodo onAddTodo={addTodoHandler} />
       <Todos items={todos} />
     </>
   );
