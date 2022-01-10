@@ -1,7 +1,20 @@
 import styles from "./TodoItem.module.css";
 
-const TodoItem: React.FC<{ text: string }> = ({ text }) => {
-  return <li className={styles.item}>{text}</li>;
+const TodoItem: React.FC<{ todoId: string,text: string; deleteTodo: (todoId: string) => void }> = ({
+  text,
+  deleteTodo,
+  todoId,
+  
+}) => {
+  const onDeleteTodo = () => {
+    deleteTodo(todoId);
+  };
+
+  return (
+    <li onClick={onDeleteTodo} className={styles.item}>
+      {text}
+    </li>
+  );
 };
 
 export default TodoItem;

@@ -14,6 +14,11 @@ const Home: NextPage = () => {
       return prev.concat(newTodo);
     });
   };
+  const deleteTodoHandler = (todoId: string) => {
+    setTodos((prev) => {
+      return prev.filter((todo) => todo.id !== todoId);
+    });
+  };
 
   return (
     <>
@@ -23,7 +28,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} deleteTodo={deleteTodoHandler} />
     </>
   );
 };
